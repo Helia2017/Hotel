@@ -1,0 +1,71 @@
+﻿@model Domain.DTO_s.RoomType
+
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization;
+
+@inject IViewLocalizer localizer
+
+@{
+    ViewData["ActivePage"] = "RoomTypes";
+    ViewData["Title"] = "Room Types | Info";
+    var check = CultureInfo.CurrentCulture.Name;
+}
+
+<div class="wrapper">
+    <partial name="_Slide" />
+    <div class="main">
+        <partial name="_Navbar" />
+        <main class="content">
+            @if (check == "en-US")
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">RoomType Info</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <dl class="row">
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Type.NameEn)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.Type.NameEn)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Breakfast)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.Breakfast)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Dinner)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.Dinner)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Lunch)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.Lunch)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.ExtraBed)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.ExtraBed)
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 ms-2">
+                    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                </div>
+            }
+        </main>
+        <partial name="_Footer" />
+    </div>
+</div>

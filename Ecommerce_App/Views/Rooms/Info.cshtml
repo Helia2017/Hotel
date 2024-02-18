@@ -1,0 +1,79 @@
+﻿@model Domain.DTO_s.Room
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Rooms | Info";
+    ViewData["ActivePage"] = "Rooms";
+}
+
+<div class="wrapper">
+    <partial name="_Slide" />
+    <div class="main">
+        <partial name="_Navbar" />
+        <main class="content">
+            <div class="card">
+                <div class="col-sm-12">
+                    <div class="card-header">
+                        <h3 class="card-title">Room</h3>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(x => x.Capacity)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(x => x.Capacity)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(x => x.PricePerNight)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(x => x.PricePerNight) JOD
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(x => x.RoomNumber)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(x => x.RoomNumber)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(x => x.RoomType)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(x => x.RoomType.NameEn)
+                                </dd>
+                            </dl>
+                        </div>
+                        <div>
+                            <h4>Room Images</h4>
+                            <hr />
+                            <div class="row">
+                                @if (Model.RoomImages2 != null && Model.RoomImages2.Any())
+                                {
+                                    @foreach (var image in Model.RoomImages2)
+                                    {
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card" style="width: 350px; height: 250px;">
+                                                <img class="card-img-top" src="@image.ImageUrl" alt="Room Image" style="width: 250px; height: 250px;">
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>No room images available.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a class="btn btn-primary" asp-action="Index">Back to List</a>
+            </div>
+        </main>
+
+        <partial name="_Footer" />
+    </div>
+</div>

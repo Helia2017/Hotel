@@ -1,0 +1,110 @@
+﻿@model Ecommerce_AppUser
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization;
+
+
+@inject IViewLocalizer localize
+@using Ecommerce_App.Areas.Identity.Data;
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Settings";
+    ViewData["ActivePage"] = "Settings";
+    var check = CultureInfo.CurrentCulture.Name;
+}
+
+<div class="wrapper">
+    <partial name="_Slide" />
+    <div class="main">
+        <partial name="_Navbar" />
+        <main class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        @if (check == "en-US")
+                        {
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2 class="card-title">My Information</h2>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th>@localize["FullName"]</th>
+                                                <td>@Model.FirstName</td>
+                                            </tr>
+                                            <tr>
+                                                <th>@localize["LastName"]</th>
+                                                <td>@Model.LastName</td>
+                                            </tr>
+                                            <tr>
+                                                <th>@localize["Email"]</th>
+                                                <td>@Model.Email</td>
+                                            </tr>
+                                            <tr>
+                                                <th>@localize["Address"]</th>
+                                                <td>@Model.Address</td>
+                                            </tr>
+                                            <tr>
+                                                <th>@localize["Image"]</th>
+                                                <td>
+                                                    @if (!string.IsNullOrWhiteSpace(Model.Image))
+                                                    {
+                                                        <img src="~/Images/@Model.Image" alt="User Image" style="height: 50px; width: 50px;" />
+                                                    }
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <a asp-action="Edit" class="btn btn-primary mt-3">@localize["Edit"]</a>
+                        }
+                        else
+                        {
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2 class="card-title text-lg-end">معلوماتي</h2>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <td>@Model.FirstName</td>
+                                                <th>@localize["FullName"]</th>
+                                            </tr>
+                                            <tr>
+                                                <td>@Model.LastName</td>
+                                                <th>@localize["LastName"]</th>
+                                            </tr>
+                                            <tr>
+                                                <td>@Model.Email</td>
+                                                <th>@localize["Email"]</th>
+                                            </tr>
+                                            <tr>
+                                                <td>@Model.Address</td>
+                                                <th>@localize["Address"]</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @if (!string.IsNullOrWhiteSpace(Model.Image))
+                                                    {
+                                                        <img src="~/Images/@Model.Image" alt="User Image" style="height: 50px; width: 50px;" />
+                                                    }
+                                                </td>
+                                                <th>@localize["Image"]</th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <a asp-action="Edit" class="btn btn-primary mt-3">@localize["Edit"]</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </main>
+        <partial name="_Footer" />
+    </div>
+</div>

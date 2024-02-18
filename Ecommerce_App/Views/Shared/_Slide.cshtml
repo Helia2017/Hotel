@@ -1,0 +1,174 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Ecommerce_App.Areas.Identity.Data
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization;
+
+@inject SignInManager<Ecommerce_AppUser> SignInManager
+@inject UserManager<Ecommerce_AppUser> UserManager
+@inject IViewLocalizer localizer
+
+
+@{
+    var check = CultureInfo.CurrentCulture.Name;
+    var ViewData2 = ViewData["ActivePage"];
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <!-- Sidebar for signed-in users -->
+    <nav id="sidebar" class="sidebar js-sidebar">
+        <!-- Sidebar content -->
+        <div class="sidebar-content js-simplebar">
+            @if (check == "en-US")
+            {
+                <a class="sidebar-brand" asp-controller="Analytics" asp-action="">
+                    <span class="align-middle">Admin Page</span>
+                </a>
+
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header fs-6">
+                        @localizer["Pages"]
+                    </li>
+
+                    <li class="sidebar-item @(ViewData2 == "Analytics" ? "active" : "")">
+                        <a class="sidebar-link" asp-controller="Analytics" asp-action="Index">
+                            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">@localizer["Dashboard"]</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Users" ? "active" : "")">
+                        <a class="sidebar-link" asp-controller="Users" asp-action="Index">
+                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">@localizer["Users"]</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Admins" ? "active" : "")">
+                        <a class="sidebar-link " asp-controller="Admins" asp-action="Index">
+                            <i class="align-middle" data-feather="shield"></i> <span class="align-middle">@localizer["Admins"]</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Types" ? "active" : "")">
+                        <a class="sidebar-link" asp-controller="LookUpTypes" asp-action="Index">
+                            <i class="fa-solid fa-hotel"></i> <span class="align-middle">Types</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "TypesOptions" ? "active" : "")">
+                        <a class="sidebar-link" asp-controller="LookUpProperty" asp-action="Index">
+                            <i class="fa-solid fa-hotel"></i> <span class="align-middle">Types Options</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "RoomTypes" ? "active" : "")">
+                        <a class="sidebar-link" asp-controller="RoomTypes" asp-action="Index">
+                            <i class="fa-solid fa-hotel"></i> <span class="align-middle">Room Types</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Rooms" ? "active" : "")">
+                        <a class="sidebar-link" asp-controller="Rooms" asp-action="Index">
+                            <i class="fa-solid fa-hotel"></i> <span class="align-middle">@localizer["Rooms"]</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Reservations" ? "active" : "")">
+                        <a class="sidebar-link" asp-controller="Reservations" asp-action="Index">
+                            <i class="align-middle" data-feather="inbox"></i> <span class="align-middle">@localizer["Reservations"]</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Settings" ? "active" : "")">
+                        <a class="sidebar-link" asp-controller="Settings" asp-action="Index">
+                            <i class="align-middle" data-feather="settings"></i> <span class="align-middle">@localizer["Settings"]</span>
+                        </a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <a class="sidebar-brand text-end" asp-controller="Analytics" asp-action="Index">
+                    <span class="align-middle">صفحة المسؤول</span>
+                </a>
+
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header text-end fs-6">
+                        @localizer["Pages"]
+                    </li>
+
+                    <li class="sidebar-item @(ViewData2 == "Analytics" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="Analytics" asp-action="Index">
+                            <span class="align-middle">@localizer["Dashboard"]</span> <i class="align-middle" data-feather="sliders"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Users" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="Users" asp-action="Index">
+                            <span class="align-middle">@localizer["Users"]</span> <i class="align-middle" data-feather="user"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Admins" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="Admins" asp-action="Index">
+                            <span class="align-middle">@localizer["Admins"]</span> <i class="align-middle" data-feather="shield"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Types" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="LookUpTypes" asp-action="Index">
+                            <span class="align-middle">@localizer["LookUpType"]</span> <i class="fa-solid fa-hotel"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "TypesOptions" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="LookUpProperty" asp-action="Index">
+                            <span class="align-middle">@localizer["LookUpProperty"]</span> <i class="fa-solid fa-hotel"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "RoomTypes" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="RoomTypes" asp-action="Index">
+                            <span class="align-middle">@localizer["RoomTypes"]</span> <i class="fa-solid fa-hotel"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Rooms" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="Rooms" asp-action="Index">
+                            <span class="align-middle">@localizer["Rooms"]</span> <i class="fa-solid fa-hotel"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Reservations" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="Reservations" asp-action="Index">
+                            <span class="align-middle">@localizer["Reservations"]</span> <i class="align-middle me-2" data-feather="inbox"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @(ViewData2 == "Settings" ? "active" : "")">
+                        <a class="sidebar-link text-end fs-5" asp-controller="Settings" asp-action="Index">
+                            <span class="align-middle">@localizer["Settings"]</span> <i class="align-middle" data-feather="settings"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            }
+        </div>
+    </nav>
+}
+else
+{
+    <!-- Sidebar for guests -->
+    <nav id="sidebar" class="sidebar js-sidebar">
+        <!-- Sidebar content -->
+        <div class="sidebar-content js-simplebar">
+            <a class="sidebar-brand" asp-controller="Analytics" asp-action="">
+                <span class="align-middle">AdminKit</span>
+            </a>
+        </div>
+    </nav>
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var currentCulture = '@check';
+        var sidebar = document.getElementById('sidebar');
+        var toggleButton = document.getElementById('toggle-btn');
+
+        toggleButton.addEventListener('click', function () {
+            var isCollapsed = sidebar.classList.contains('collapsed');
+
+            if (currentCulture === 'ar-JO' && !isCollapsed) {
+                sidebar.style.zIndex = '-1';
+                sidebar.style.display = 'none';
+            } else {
+                sidebar.style.zIndex = '';
+                sidebar.style.display = '';
+            }
+        });
+    });
+</script>

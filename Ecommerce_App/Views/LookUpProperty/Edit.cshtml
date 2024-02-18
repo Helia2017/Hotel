@@ -1,0 +1,128 @@
+﻿@model Domain.Models.EditLookUpPropertyViewModel
+@using Microsoft.AspNetCore.Mvc.Localization;
+@using System.Globalization;
+
+@inject IViewLocalizer localizer
+
+@{
+    ViewData["Title"] = "Types Options | Edit";
+    ViewData["ActivePage"] = "TypesOptions";
+    var check = CultureInfo.CurrentCulture.Name;
+}
+<div class="wrapper">
+    <partial name="_Slide" />
+    <div class="main">
+        <partial name="_Navbar" />
+        <main class="content">
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <form class="card mt-5" asp-action="Edit">
+                        @if (check == "en-US")
+                        {
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="card-header">
+                                <h3 class="card-title">Edit Room Type</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3 row">
+                                    <label class="col-3 col-form-label required" asp-for="LookUpProperty.NameEn"></label>
+                                    <div class="col">
+                                        <input type="text" class="form-control" asp-for="LookUpProperty.NameEn">
+                                        <span asp-validation-for="LookUpProperty.NameEn" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-3 col-form-label required" asp-for="LookUpProperty.NameAr"></label>
+                                    <div class="col">
+                                        <input type="text" class="form-control" asp-for="LookUpProperty.NameAr">
+                                        <span asp-validation-for="LookUpProperty.NameAr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-3 col-form-label required" asp-for="LookUpProperty.Details"></label>
+                                    <div class="col">
+                                        <input type="text" class="form-control" asp-for="LookUpProperty.Details">
+                                        <span asp-validation-for="LookUpProperty.Details" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-3 col-form-label required" asp-for="LookUpProperty.TypeId"></label>
+                                    <div class="col">
+                                        <select asp-for="LookUpProperty.TypeId" asp-items="@(new SelectList(Model.AllLookUpTypes, "Id", "NameEn", Model.LookUpProperty.TypeId))" class="form-select">
+                                        </select>
+                                        <span asp-validation-for="LookUpProperty.TypeId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <a asp-action="Index" class="btn btn-secondary" role="button">@localizer["BackToList"]</a>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">@localizer["SaveChanges"]</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="card-header">
+                                <h3 class="card-title text-lg-end">تعديل نوع الغرفة</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3 row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" asp-for="LookUpProperty.NameEn">
+                                        <span asp-validation-for="LookUpProperty.NameEn" class="text-danger"></span>
+                                    </div>
+                                    <label class="col-3 col-form-label required" asp-for="LookUpProperty.NameEn"></label>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" asp-for="LookUpProperty.NameAr">
+                                        <span asp-validation-for="LookUpProperty.NameAr" class="text-danger"></span>
+                                    </div>
+                                    <label class="col-3 col-form-label required" asp-for="LookUpProperty.NameAr"></label>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" asp-for="LookUpProperty.Details">
+                                        <span asp-validation-for="LookUpProperty.Details" class="text-danger"></span>
+                                    </div>
+                                    <label class="col-3 col-form-label required" asp-for="LookUpProperty.Details"></label>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col">
+                                        <select asp-for="LookUpProperty.TypeId" asp-items="@(new SelectList(Model.AllLookUpTypes, "Id", "NameEn", Model.LookUpProperty.TypeId))" class="form-select">
+                                        </select>
+                                        <span asp-validation-for="LookUpProperty.TypeId" class="text-danger"></span>
+                                    </div>
+                                    <label class="col-3 col-form-label required" asp-for="LookUpProperty.TypeId"></label>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">@localizer["SaveChanges"]</button>
+                                    </div>
+                                    <div>
+                                        <a asp-action="Index" class="btn btn-secondary" role="button">@localizer["BackToList"]</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </main>
+        <partial name="_Footer" />
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
