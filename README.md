@@ -46,6 +46,15 @@ Now, whenever I return to the platform, I can log in to my account to quickly ac
 - Admin selects "Logout" to exit the admin panel
 - End
 
+## Admin Story:
+
+As an admin, I want to manage rooms, services, bookings, and user information efficiently on the platform.
+I start by logging into the admin panel and selecting the "Manage Rooms" option. The system presents me with a list of existing rooms and services. If I need to add a new room or service, I choose the appropriate option and fill in the necessary details such as room type, capacity, amenities, or service description. If I need to edit existing rooms or services, I select the option to edit and make the necessary changes.
+After updating the rooms and services, I return to the main admin dashboard. From there, I can view current bookings by selecting the "View Bookings" option. The system displays a list of all the current bookings, allowing me to view, edit, or cancel bookings as needed.
+Additionally, I have the option to view registered users and their booking history by selecting the "View Users" option. This allows me to track user activity and provide personalized services if necessary.
+Once I've completed my tasks, I can securely log out of the admin panel, knowing that all changes and updates have been successfully saved.
+This admin interface ensures smooth management of rooms, services, bookings, and user information, helping to provide a seamless experience for both administrators and users alike.
+
 ## Admin Login Credentials
 
 - username: test@gmail.com
