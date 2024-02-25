@@ -117,7 +117,6 @@ namespace Ecommerce_App.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
 
                 var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
                 if (user != null && user.Status)
@@ -136,21 +135,23 @@ namespace Ecommerce_App.Areas.Identity.Pages.Account
                 if(!result.Succeeded)
                 {
                     ViewData["EmailOrPass"] = true;
-                    ModelState.AddModelError(string.Empty, "The email address or password is incorrect.");
+                    ModelState.AddModelError(string.Empty, "The email address or password is incorrect (if new try sign in first).");
                     return Page();
                 }
                 if (result.RequiresTwoFactor)
                 {
+                    // use two factor authentication
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
+                    // if user is locked 
                     _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt please try again.");
                     return Page();
                 }
             }
