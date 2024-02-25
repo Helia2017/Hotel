@@ -26,6 +26,26 @@ Once I've completed the form, the system generates a unique booking ID for me. I
 Opting to create an account, I select the "Create Account" option and fill in my personal details. The system saves this information securely for future use. With my account created, I'm directed back to the home screen where I can see my booking details and any other relevant information.
 Now, whenever I return to the platform, I can log in to my account to quickly access my booking history and make new reservations with ease.
 
+## Admin Flow:
+
+- Start
+- Admin logs into the platform
+- Admin selects "Manage Rooms" option
+- System displays list of existing rooms and services
+- Admin chooses to add a new room/service or edit existing ones
+- System prompts admin to fill in details for the new room/service or edit existing ones
+- Admin fills in the required details
+- System saves the changes
+- Admin returns to the main admin dashboard
+- Admin selects "View Bookings" option
+- System displays a list of current bookings
+- Admin can view, edit, or cancel bookings as necessary
+- Admin selects "View Users" option
+- System displays a list of registered users
+- Admin can view user details and booking history
+- Admin selects "Logout" to exit the admin panel
+- End
+
 ## Admin Login Credentials
 
 - username: test@gmail.com
